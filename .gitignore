@@ -1,22 +1,15 @@
-
-# Local backup / trash
+# Local backup
 BACKUP/
 TRASH/
 
-# Python cache
+# Python
 __pycache__/
 *.py[cod]
 
-# Large model weights
-*.pdparams
-data/data60419/*.zip
-
-# Paddle checkpoints / optimizer states
+# Local model checkpoints / weights
+saved_models/
 *.pdparams
 *.pdopt
-*.pdmodel
-*.pdiparams
-*.pdiparams.info
 
 # IDE / OS
 .vscode/
