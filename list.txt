@@ -1,0 +1,10 @@
+3.6干的：
+run_hparam_experiments.py
+stat.py
+得出LR=1.5最好
+3.7第一次干的（DropHead和swiglu）
+run_model_improvements.py
+stat_model_improvemrnts.py
+yaml
+拉完了
+3.7第二次干的（Relative Position Bias）

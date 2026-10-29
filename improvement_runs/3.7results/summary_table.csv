@@ -1,0 +1,7 @@
+﻿name,status,attention_variant,ffn_variant,drophead_rate,swiglu_inner_hid,max_relative_position,bleu_2017,bleu_2018,last_step,last_norm,last5_norm,mean_speed
+control_lr150,control_existing,normal,relu,0.1,1360,16,10.86,11.23,,,,
+relative_bias_16,ok,relative_bias,relu,0.1,1360,16,11.11,11.53,18300,1.757815,1.6677896,2.812677595628414
+drophead_005,skipped_existing,drophead,relu,0.05,1360,16,10.58,11.05,18300,1.837807,1.7730428,2.805628415300549
+swiglu_1536,skipped_existing,normal,swiglu,0.1,1536,16,10.45,10.67,18300,1.69709,1.6579743999999998,2.5941530054644777
+swiglu_1360,skipped_existing,normal,swiglu,0.1,1360,16,10.44,10.79,18300,1.733239,1.6753854000000001,2.7418579234972733
+drophead_010,skipped_existing,drophead,relu,0.1,1360,16,10.11,10.68,18300,1.869736,1.806957,2.8143169398907086

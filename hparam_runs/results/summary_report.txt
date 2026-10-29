@@ -1,0 +1,155 @@
+========================================================================================
+Transformer 超参数实验自动统计报告
+========================================================================================
+
+发现实验目录数: 11
+具有有效 BLEU-2017 的实验数: 11
+检测到结构加载异常的预测数: 0
+
+----------------------------------------------------------------------------------------
+BLEU-2017 排名（仅统计预测日志无 shape mismatch 的实验）
+----------------------------------------------------------------------------------------
+Rank  Experiment                 BLEU17   LastNorm    LastPPL     Speed
+1     lr_150                      10.86     1.7931      23.92      2.84
+2     label_smooth_020            10.82     1.6142      68.57      2.84
+3     ffn_1024                    10.74     1.8492      25.30      3.42
+4     warmup_12000                10.73     1.8890      26.33      2.83
+5     dropout_020                 10.71     1.5693      19.13      2.87
+6     dropout_030                 10.55     2.1084      32.79      2.85
+7     ffn_1536                    10.49     1.8134      24.41      3.04
+8     beam_3                      10.36          -          -         -
+9     label_smooth_005            10.13     1.8107      12.65      2.83
+10    beam_1                      10.12          -          -         -
+11    beam_8                      10.11          -          -         -
+
+当前 BLEU-2017 最佳实验: lr_150 (BLEU=10.86)
+对应关键配置: {"learning_rate": 1.5, "warmup_steps": 8000, "label_smooth_eps": 0.1, "prepostprocess_dropout": 0.1, "attention_dropout": 0.1, "relu_dropout": 0.1, "d_model": 512, "d_inner_hid": 2048, "d_key": 64, "d_value": 64, "n_head": 8, "n_layer": 6, "batch_size": 4096, "epoch": 10, "beam_size": 5}
+
+----------------------------------------------------------------------------------------
+逐实验详细统计
+----------------------------------------------------------------------------------------
+
+[beam_1]
+config = {"beam_size": 1}
+train: 无 train.log 训练点（可能是 beam-only 实验）
+BLEU: 2017=10.12, 2018=10.21
+prediction_status: ok
+
+[beam_3]
+config = {"beam_size": 3}
+train: 无 train.log 训练点（可能是 beam-only 实验）
+BLEU: 2017=10.36, 2018=10.98
+prediction_status: ok
+
+[beam_8]
+config = {"beam_size": 8}
+train: 无 train.log 训练点（可能是 beam-only 实验）
+BLEU: 2017=10.11, 2018=10.71
+prediction_status: ok
+
+[dropout_020]
+config = {"learning_rate": 2.0, "warmup_steps": 8000, "label_smooth_eps": 0.1, "prepostprocess_dropout": 0.2, "attention_dropout": 0.1, "relu_dropout": 0.1, "d_model": 512, "d_inner_hid": 2048, "d_key": 64, "d_value": 64, "n_head": 8, "n_layer": 6, "batch_size": 4096, "epoch": 10, "beam_size": 5}
+train: points=172, last_step=17200, last_epoch=9
+last: avg_loss=2.9510, norm_loss=1.5693, ppl=19.13
+last5 mean: avg_loss=3.1053, norm_loss=1.7235, ppl=22.40
+minimum logged norm_loss=1.5599 @ step 16600
+mean speed=2.87 step/s
+BLEU: 2017=10.71, 2018=11.19
+prediction_status: ok
+
+[dropout_030]
+config = {"learning_rate": 2.0, "warmup_steps": 8000, "label_smooth_eps": 0.1, "prepostprocess_dropout": 0.3, "attention_dropout": 0.1, "relu_dropout": 0.1, "d_model": 512, "d_inner_hid": 2048, "d_key": 64, "d_value": 64, "n_head": 8, "n_layer": 6, "batch_size": 4096, "epoch": 10, "beam_size": 5}
+train: points=183, last_step=18300, last_epoch=9
+last: avg_loss=3.4902, norm_loss=2.1084, ppl=32.79
+last5 mean: avg_loss=3.4065, norm_loss=2.0247, ppl=30.32
+minimum logged norm_loss=1.6720 @ step 14800
+mean speed=2.85 step/s
+BLEU: 2017=10.55, 2018=11.23
+prediction_status: ok
+
+[ffn_1024]
+config = {"learning_rate": 2.0, "warmup_steps": 8000, "label_smooth_eps": 0.1, "prepostprocess_dropout": 0.1, "attention_dropout": 0.1, "relu_dropout": 0.1, "d_model": 512, "d_inner_hid": 1024, "d_key": 64, "d_value": 64, "n_head": 8, "n_layer": 6, "batch_size": 4096, "epoch": 10, "beam_size": 5}
+train: points=183, last_step=18300, last_epoch=9
+last: avg_loss=3.2309, norm_loss=1.8492, ppl=25.30
+last5 mean: avg_loss=3.1690, norm_loss=1.7873, ppl=23.87
+minimum logged norm_loss=1.4669 @ step 14800
+mean speed=3.42 step/s
+BLEU: 2017=10.74, 2018=10.93
+prediction_status: ok
+
+[ffn_1536]
+config = {"learning_rate": 2.0, "warmup_steps": 8000, "label_smooth_eps": 0.1, "prepostprocess_dropout": 0.1, "attention_dropout": 0.1, "relu_dropout": 0.1, "d_model": 512, "d_inner_hid": 1536, "d_key": 64, "d_value": 64, "n_head": 8, "n_layer": 6, "batch_size": 4096, "epoch": 10, "beam_size": 5}
+train: points=183, last_step=18300, last_epoch=9
+last: avg_loss=3.1951, norm_loss=1.8134, ppl=24.41
+last5 mean: avg_loss=3.1228, norm_loss=1.7411, ppl=22.80
+minimum logged norm_loss=1.4173 @ step 14800
+mean speed=3.04 step/s
+BLEU: 2017=10.49, 2018=10.83
+prediction_status: ok
+
+[label_smooth_005]
+config = {"learning_rate": 2.0, "warmup_steps": 8000, "label_smooth_eps": 0.05, "prepostprocess_dropout": 0.1, "attention_dropout": 0.1, "relu_dropout": 0.1, "d_model": 512, "d_inner_hid": 2048, "d_key": 64, "d_value": 64, "n_head": 8, "n_layer": 6, "batch_size": 4096, "epoch": 10, "beam_size": 5}
+train: points=183, last_step=18300, last_epoch=9
+last: avg_loss=2.5375, norm_loss=1.8107, ppl=12.65
+last5 mean: avg_loss=2.4977, norm_loss=1.7709, ppl=12.20
+minimum logged norm_loss=1.4430 @ step 14800
+mean speed=2.83 step/s
+BLEU: 2017=10.13, 2018=11.16
+prediction_status: ok
+
+[label_smooth_020]
+config = {"learning_rate": 2.0, "warmup_steps": 8000, "label_smooth_eps": 0.2, "prepostprocess_dropout": 0.1, "attention_dropout": 0.1, "relu_dropout": 0.1, "d_model": 512, "d_inner_hid": 2048, "d_key": 64, "d_value": 64, "n_head": 8, "n_layer": 6, "batch_size": 4096, "epoch": 10, "beam_size": 5}
+train: points=183, last_step=18300, last_epoch=9
+last: avg_loss=4.2279, norm_loss=1.6142, ppl=68.57
+last5 mean: avg_loss=4.1780, norm_loss=1.5643, ppl=65.38
+minimum logged norm_loss=1.3003 @ step 14800
+mean speed=2.84 step/s
+BLEU: 2017=10.82, 2018=11.14
+prediction_status: ok
+
+[lr_150]
+config = {"learning_rate": 1.5, "warmup_steps": 8000, "label_smooth_eps": 0.1, "prepostprocess_dropout": 0.1, "attention_dropout": 0.1, "relu_dropout": 0.1, "d_model": 512, "d_inner_hid": 2048, "d_key": 64, "d_value": 64, "n_head": 8, "n_layer": 6, "batch_size": 4096, "epoch": 10, "beam_size": 5}
+train: points=183, last_step=18300, last_epoch=9
+last: avg_loss=3.1748, norm_loss=1.7931, ppl=23.92
+last5 mean: avg_loss=3.1087, norm_loss=1.7270, ppl=22.45
+minimum logged norm_loss=1.3904 @ step 16600
+mean speed=2.84 step/s
+BLEU: 2017=10.86, 2018=11.23
+prediction_status: ok
+
+[warmup_12000]
+config = {"learning_rate": 2.0, "warmup_steps": 12000, "label_smooth_eps": 0.1, "prepostprocess_dropout": 0.1, "attention_dropout": 0.1, "relu_dropout": 0.1, "d_model": 512, "d_inner_hid": 2048, "d_key": 64, "d_value": 64, "n_head": 8, "n_layer": 6, "batch_size": 4096, "epoch": 10, "beam_size": 5}
+train: points=183, last_step=18300, last_epoch=9
+last: avg_loss=3.2707, norm_loss=1.8890, ppl=26.33
+last5 mean: avg_loss=3.1975, norm_loss=1.8158, ppl=24.58
+minimum logged norm_loss=1.4870 @ step 16600
+mean speed=2.83 step/s
+BLEU: 2017=10.73, 2018=10.80
+prediction_status: ok
+
+----------------------------------------------------------------------------------------
+按实验名称粗分组的 BLEU-2017
+----------------------------------------------------------------------------------------
+dropout:
+  dropout_020: BLEU17=10.71, last5_norm=1.7235, mean_speed=2.87
+  dropout_030: BLEU17=10.55, last5_norm=2.0247, mean_speed=2.85
+label_smooth:
+  label_smooth_005: BLEU17=10.13, last5_norm=1.7709, mean_speed=2.83
+  label_smooth_020: BLEU17=10.82, last5_norm=1.5643, mean_speed=2.84
+learning_rate:
+  lr_150: BLEU17=10.86, last5_norm=1.7270, mean_speed=2.84
+warmup:
+  warmup_12000: BLEU17=10.73, last5_norm=1.8158, mean_speed=2.83
+ffn:
+  ffn_1024: BLEU17=10.74, last5_norm=1.7873, mean_speed=3.42
+  ffn_1536: BLEU17=10.49, last5_norm=1.7411, mean_speed=3.04
+beam:
+  beam_1: BLEU17=10.12, last5_norm=-, mean_speed=-
+  beam_3: BLEU17=10.36, last5_norm=-, mean_speed=-
+  beam_8: BLEU17=10.11, last5_norm=-, mean_speed=-
+
+========================================================================================
+建议发给 ChatGPT 的内容
+========================================================================================
+直接上传或复制本 summary_report.txt。若还需要画 loss 曲线，再附上 training_points.csv。
+注意：若 prediction_status=INVALID_SHAPE_WARNING，对应 BLEU 必须先重新预测后再分析。

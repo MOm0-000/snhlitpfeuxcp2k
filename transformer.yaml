@@ -110,3 +110,21 @@ postprocess_cmd: "da"  # dropout + residual connection
 # the flag indicating whether to share embedding and softmax weights.
 # vocabularies in source and target should be same for weight sharing.
 weight_sharing: True
+# ===== Section 3.7 model variants =====
+# baseline-compatible defaults
+attention_variant: "normal"   # normal | drophead | weighted
+ffn_variant: "relu"           # relu | swiglu
+
+# Scheduled DropHead
+# The paper uses a V-shaped schedule: p_max -> 0 at warmup -> p_max at end.
+drophead_rate: 0.1
+drophead_schedule: "v"        # v | fixed
+drophead_warmup_steps: 8000
+# 10 epochs in this dataset are about 18.3k-18.4k optimizer steps.
+drophead_total_steps: 18400
+
+# SwiGLU hidden size. 1360 is approximately parameter-matched to
+# the original ReLU FFN with d_inner_hid=2048.
+swiglu_inner_hid: 1360
+# Relative Position Bias
+max_relative_position: 16

@@ -1,0 +1,26 @@
+{
+  "checkpoint": "/home/zxx/NLPexp/NLPexp2/NLPlab2/improvement_runs/relative_bias_16/models/step_final/transformer.pdparams",
+  "beam_size": 5,
+  "max_out_len": 255,
+  "model_build_params": {
+    "d_model": 512,
+    "d_inner_hid": 2048,
+    "d_key": 64,
+    "d_value": 64,
+    "n_head": 8,
+    "n_layer": 6,
+    "max_length": 256,
+    "prepostprocess_dropout": 0.1,
+    "attention_dropout": 0.1,
+    "relu_dropout": 0.1,
+    "label_smooth_eps": 0.1,
+    "attention_variant": "relative_bias",
+    "ffn_variant": "relu",
+    "drophead_rate": 0.1,
+    "drophead_schedule": "v",
+    "drophead_warmup_steps": 8000,
+    "drophead_total_steps": 18400,
+    "swiglu_inner_hid": 1360,
+    "max_relative_position": 16
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "model_dir": "/home/zxx/NLPexp/NLPexp2/NLPlab2/hparam_runs/ffn_1024/models/step_final",
+  "beam_size": 5,
+  "max_out_len": 255,
+  "model_build_params": {
+    "d_model": 512,
+    "d_inner_hid": 1024,
+    "d_key": 64,
+    "d_value": 64,
+    "n_head": 8,
+    "n_layer": 6,
+    "max_length": 256,
+    "prepostprocess_dropout": 0.1,
+    "attention_dropout": 0.1,
+    "relu_dropout": 0.1,
+    "label_smooth_eps": 0.1
+  }
+}

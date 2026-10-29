@@ -1,0 +1,11 @@
+
+# Local backup / trash
+BACKUP/
+TRASH/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Large model weights
+*.pdparams

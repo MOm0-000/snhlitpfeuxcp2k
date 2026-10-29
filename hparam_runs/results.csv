@@ -1,0 +1,12 @@
+name,kind,override,model_dir,beam_size,train_status,train_seconds,last_step,last_avg_loss,last_norm_loss,last_ppl,bleu_2017,bleu_2018
+dropout_020,train,"{""prepostprocess_dropout"": 0.2}",/home/zxx/NLPexp/NLPexp2/NLPlab2/hparam_runs/dropout_020/models/step_final,5,skipped_existing,0.0,17200,2.951044,1.56931,19.125908,10.71,11.19
+dropout_030,train,"{""prepostprocess_dropout"": 0.3}",/home/zxx/NLPexp/NLPexp2/NLPlab2/hparam_runs/dropout_030/models/step_final,5,skipped_existing,0.0,18300,3.490163,2.108429,32.79128,10.55,11.23
+label_smooth_005,train,"{""label_smooth_eps"": 0.05}",/home/zxx/NLPexp/NLPexp2/NLPlab2/hparam_runs/label_smooth_005/models/step_final,5,skipped_existing,0.0,18300,2.537525,1.810684,12.648329,10.13,11.16
+label_smooth_020,train,"{""label_smooth_eps"": 0.2}",/home/zxx/NLPexp/NLPexp2/NLPlab2/hparam_runs/label_smooth_020/models/step_final,5,skipped_existing,0.0,18300,4.227862,1.614158,68.570488,10.82,11.14
+lr_150,train,"{""learning_rate"": 1.5}",/home/zxx/NLPexp/NLPexp2/NLPlab2/hparam_runs/lr_150/models/step_final,5,skipped_existing,0.0,18300,3.174823,1.793089,23.922586,10.86,11.23
+warmup_12000,train,"{""warmup_steps"": 12000}",/home/zxx/NLPexp/NLPexp2/NLPlab2/hparam_runs/warmup_12000/models/step_final,5,skipped_existing,0.0,18300,3.270724,1.88899,26.3304,10.73,10.8
+ffn_1024,train,"{""d_inner_hid"": 1024}",/home/zxx/NLPexp/NLPexp2/NLPlab2/hparam_runs/ffn_1024/models/step_final,5,skipped_existing,0.0,18300,3.230923,1.849188,25.302988,10.74,10.93
+ffn_1536,train,"{""d_inner_hid"": 1536}",/home/zxx/NLPexp/NLPexp2/NLPlab2/hparam_runs/ffn_1536/models/step_final,5,skipped_existing,0.0,18300,3.195141,1.813407,24.413621,10.49,10.83
+beam_1,beam,"{""beam_size"": 1}",/home/zxx/NLPexp/NLPexp2/NLPlab2/saved_models/step_final,1,not_applicable,0,,,,,10.12,10.21
+beam_3,beam,"{""beam_size"": 3}",/home/zxx/NLPexp/NLPexp2/NLPlab2/saved_models/step_final,3,not_applicable,0,,,,,10.36,10.98
+beam_8,beam,"{""beam_size"": 8}",/home/zxx/NLPexp/NLPexp2/NLPlab2/saved_models/step_final,8,not_applicable,0,,,,,10.11,10.71

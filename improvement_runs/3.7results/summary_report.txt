@@ -1,0 +1,24 @@
+============================================================================================
+Transformer 3.7 模型结构改进实验统计报告
+============================================================================================
+
+控制组 control_lr150: BLEU17=10.86, BLEU18=11.23
+
+Experiment           Status       Attention  FFN        BLEU17   BLEU18       Δ17       Δ18    Speed
+----------------------------------------------------------------------------------------------------------
+control_lr150        OK           normal     relu        10.86    11.23     +0.00     +0.00        -
+relative_bias_16     OK           relative_bias relu        11.11    11.53     +0.25     +0.30     2.81
+drophead_005         OK           drophead   relu        10.58    11.05     -0.28     -0.18     2.81
+swiglu_1536          OK           normal     swiglu      10.45    10.67     -0.41     -0.56     2.59
+swiglu_1360          OK           normal     swiglu      10.44    10.79     -0.42     -0.44     2.74
+drophead_010         OK           drophead   relu        10.11    10.68     -0.75     -0.55     2.81
+
+----------------------------------------------------------------------------------------------------------
+按 newstest2017 选择的最佳结构: relative_bias_16 (BLEU17=11.11, BLEU18=11.53)
+相对 control_lr150 的 BLEU17 变化: +0.25
+相对 control_lr150 的 BLEU18 变化: +0.30
+
+说明：
+1. 3.7 应优先用 BLEU-2017 选择结构，再用 BLEU-2018 看泛化。
+2. Relative Position Bias 只修改 encoder/decoder self-attention，cross-attention 保持普通 attention。
+3. 不同结构的训练 loss/PPL 不能单独作为翻译质量结论，最终以 BLEU 为主。
