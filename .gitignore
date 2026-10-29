@@ -15,3 +15,4 @@ saved_models/
 .vscode/
 .idea/
 .DS_Store
+data/data60419/*.zip
