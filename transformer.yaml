@@ -1,43 +1,60 @@
-# used for continuous evaluation
-enable_ce: False
+# Transformer configuration for NLP Experiment II
+# Default values correspond to the Section 3.3-3.5 baseline.
+# Section 3.6/3.7 experiment scripts override selected values from the command line.
+
+# -----------------------------------------------------------------------------
+# Runtime / checkpoint
+# -----------------------------------------------------------------------------
 
 # The frequency to save trained models when training.
-save_step: 100000
+save_step: 5000
+
 # The frequency to fetch and print output when training.
 print_step: 100
-# path of the checkpoint, to resume the previous training
+
+# Path of a checkpoint used to resume training.
 init_from_checkpoint: ""
-# path of the pretrain model, to better solve the current task
+
+# Path of a pretrained model used to initialize training.
 init_from_pretrain_model: ""
-# path of trained parameter, to make prediction
-init_from_params: "trained_params/step_100000"
-# the directory for saving models.
+
+# Path of trained parameters used for prediction.
+init_from_params: "saved_models/step_final"
+
+# Directory for saving models.
 save_model_path: "saved_models"
-# deprecated, the directory for saving checkpoints.
-save_checkpoint: "trained_ckpts"
-# deprecated, the directory for saving trained parameters.
-save_param: "trained_params"
-# the directory for saving inference model.
-inference_model_dir: "infer_model"
-# Set seed for CE or debug
+
+# Random seed. Keep None unless a fixed seed is required.
 random_seed: None
-# The pattern to match training data files.
-training_file: "wmt16_ende_data_bpe/train.tok.clean.bpe.32000.en-de"
-# The pattern to match test data files.
-predict_file: "wmt16_ende_data_bpe/newstest2016.tok.bpe.32000.en-de"
-# The file to output the translation results of predict_file to.
-output_file: "predict.txt"
-# The path of vocabulary file of source language.
-src_vocab_fpath: "wmt16_ende_data_bpe/vocab_all.bpe.32000"
-# The path of vocabulary file of target language.
-trg_vocab_fpath: "wmt16_ende_data_bpe/vocab_all.bpe.32000"
-# The <bos>, <eos> and <unk> tokens in the dictionary.
+
+
+# -----------------------------------------------------------------------------
+# Dataset / vocabulary
+# -----------------------------------------------------------------------------
+
+# WMT18 English -> Chinese training data.
+training_file: "wmt18_zhen_data_bpe3/train.tok.clean.bpe.32000.en-zh"
+
+# Default prediction set. Change to newstest2017 when evaluating 2017.
+predict_file: "wmt18_zhen_data_bpe3/newstest2018.tok.bpe.32000.en-zh"
+
+# Translation output file.
+output_file: "output_file/predict_2018.txt"
+
+# Shared BPE vocabulary.
+src_vocab_fpath: "wmt18_zhen_data_bpe3/vocab_all.bpe.32000"
+trg_vocab_fpath: "wmt18_zhen_data_bpe3/vocab_all.bpe.32000"
+
+# <bos>, <eos>, <unk>
 special_token: ["<s>", "<e>", "<unk>"]
 
-# whether to use cuda
+
+# -----------------------------------------------------------------------------
+# Device / data reader
+# -----------------------------------------------------------------------------
+
 use_cuda: True
 
-# args for reader, see reader.py for details
 token_delimiter: " "
 use_token_batch: True
 pool_size: 200000
@@ -46,85 +63,105 @@ shuffle: True
 shuffle_batch: True
 batch_size: 4096
 
-# Hyparams for training:
-# the number of epoches for training
-epoch: 30
-# the hyper parameters for Adam optimizer.
-# This static learning_rate will be multiplied to the LearningRateScheduler
-# derived learning rate the to get the final learning rate.
+
+# -----------------------------------------------------------------------------
+# Section 3.3 baseline training hyperparameters
+# -----------------------------------------------------------------------------
+
+# Number of epochs required by the course baseline experiment.
+epoch: 10
+
+# Adam optimizer.
+# The static learning_rate is multiplied by the Transformer LR scheduler.
 learning_rate: 2.0
 beta1: 0.9
 beta2: 0.997
 eps: 1e-9
-# the parameters for learning rate scheduling.
+
+# Learning-rate warmup.
 warmup_steps: 8000
-# the weight used to mix up the ground-truth distribution and the fixed
-# uniform distribution in label smoothing when training.
-# Set this as zero if label smoothing is not wanted.
+
+# Label smoothing.
 label_smooth_eps: 0.1
 
-# Hyparams for generation:
-# the parameters for beam search.
+
+# -----------------------------------------------------------------------------
+# Generation
+# -----------------------------------------------------------------------------
+
 beam_size: 5
-max_out_len: 256
-# the number of decoded sentences to output.
+max_out_len: 255
 n_best: 1
 
-# Hyparams for model:
-# These following five vocabularies related configurations will be set
-# automatically according to the passed vocabulary path and special tokens.
-# size of source word dictionary.
+
+# -----------------------------------------------------------------------------
+# Transformer model
+# -----------------------------------------------------------------------------
+
+# These vocabulary-related values are updated automatically from the vocabulary
+# files and special tokens.
 src_vocab_size: 32000
-# size of target word dictionay
 trg_vocab_size: 32000
-# index for <bos> token
 bos_idx: 0
-# index for <eos> token
 eos_idx: 1
-# index for <unk> token
 unk_idx: 2
-# max length of sequences deciding the size of position encoding table.
+
+# Maximum sequence length / positional encoding table size.
 max_length: 256
-# the dimension for word embeddings, which is also the last dimension of
-# the input and output of multi-head attention, position-wise feed-forward
-# networks, encoder and decoder.
+
+# Model dimensions.
 d_model: 512
-# size of the hidden layer in position-wise feed-forward networks.
 d_inner_hid: 2048
-# the dimension that keys are projected to for dot-product attention.
 d_key: 64
-# the dimension that values are projected to for dot-product attention.
 d_value: 64
-# number of head used in multi-head attention.
 n_head: 8
-# number of sub-layers to be stacked in the encoder and decoder.
 n_layer: 6
-# dropout rates of different modules.
+
+# Dropout.
 prepostprocess_dropout: 0.1
 attention_dropout: 0.1
 relu_dropout: 0.1
-# to process before each sub-layer
-preprocess_cmd: "n"  # layer normalization
-# to process after each sub-layer
-postprocess_cmd: "da"  # dropout + residual connection
-# the flag indicating whether to share embedding and softmax weights.
-# vocabularies in source and target should be same for weight sharing.
-weight_sharing: True
-# ===== Section 3.7 model variants =====
-# baseline-compatible defaults
-attention_variant: "normal"   # normal | drophead | weighted
-ffn_variant: "relu"           # relu | swiglu
 
-# Scheduled DropHead
-# The paper uses a V-shaped schedule: p_max -> 0 at warmup -> p_max at end.
+# Current implementation uses Pre-LN.
+preprocess_cmd: "n"
+postprocess_cmd: "da"
+
+# Source/target vocabulary is shared in this experiment.
+weight_sharing: True
+
+
+# -----------------------------------------------------------------------------
+# Section 3.7 model variants
+#
+# IMPORTANT:
+#   The defaults below reproduce the ordinary Transformer baseline.
+#   run_model_improvements.py changes these values from the command line.
+# -----------------------------------------------------------------------------
+
+# Attention implementation:
+#   normal        -> baseline Transformer
+#   drophead      -> Scheduled DropHead
+#   relative_bias -> learned relative-position bias
+attention_variant: "normal"
+
+# Feed-forward implementation:
+#   relu   -> baseline Transformer FFN
+#   swiglu -> SwiGLU FFN
+ffn_variant: "relu"
+
+# Scheduled DropHead.
+# These values have no effect while attention_variant == "normal".
 drophead_rate: 0.1
 drophead_schedule: "v"        # v | fixed
 drophead_warmup_steps: 8000
-# 10 epochs in this dataset are about 18.3k-18.4k optimizer steps.
 drophead_total_steps: 18400
 
-# SwiGLU hidden size. 1360 is approximately parameter-matched to
-# the original ReLU FFN with d_inner_hid=2048.
+# SwiGLU hidden size.
+# Has no effect while ffn_variant == "relu".
+# 1360 is approximately parameter-matched to the baseline ReLU FFN
+# with d_inner_hid=2048.
 swiglu_inner_hid: 1360
-# Relative Position Bias
+
+# Relative Position Bias maximum distance.
+# Has no effect unless attention_variant == "relative_bias".
 max_relative_position: 16
