@@ -1,0 +1,258 @@
+/home/zxx/miniconda3/envs/nlpexp2/lib/python3.10/site-packages/paddle/utils/cpp_extension/extension_utils.py:712: UserWarning: No ccache found. Please be aware that recompiling all source files may be required. You can download and install ccache from: https://github.com/ccache/ccache/blob/master/doc/INSTALL.md
+  warnings.warn(warning_message)
+----------------------------------------------------------------------
+do_train:				True
+do_predict:				False
+do_eval:				False
+do_save_inference_model:				False
+is_profiler:				0
+profiler_path:				./
+max_iter:				0
+save_step:				5000
+print_step:				100
+init_from_checkpoint:				
+init_from_pretrain_model:				
+init_from_params:				saved_models/step_final
+save_model_path:				saved_models
+random_seed:				None
+training_file:				wmt18_zhen_data_bpe3/train.tok.clean.bpe.32000.en-zh
+predict_file:				wmt18_zhen_data_bpe3/newstest2018.tok.bpe.32000.en-zh
+output_file:				output_file/predict_2018.txt
+src_vocab_fpath:				wmt18_zhen_data_bpe3/vocab_all.bpe.32000
+trg_vocab_fpath:				wmt18_zhen_data_bpe3/vocab_all.bpe.32000
+special_token:				['<s>', '<e>', '<unk>']
+use_cuda:				True
+token_delimiter:				 
+use_token_batch:				True
+pool_size:				200000
+sort_type:				pool
+shuffle:				True
+shuffle_batch:				True
+batch_size:				4096
+epoch:				10
+learning_rate:				2.0
+beta1:				0.9
+beta2:				0.997
+eps:				1e-9
+warmup_steps:				8000
+label_smooth_eps:				0.1
+beam_size:				5
+max_out_len:				255
+n_best:				1
+src_vocab_size:				32000
+trg_vocab_size:				32000
+bos_idx:				0
+eos_idx:				1
+unk_idx:				2
+max_length:				256
+d_model:				512
+d_inner_hid:				2048
+d_key:				64
+d_value:				64
+n_head:				8
+n_layer:				6
+prepostprocess_dropout:				0.1
+attention_dropout:				0.1
+relu_dropout:				0.1
+preprocess_cmd:				n
+postprocess_cmd:				da
+weight_sharing:				True
+attention_variant:				normal
+ffn_variant:				relu
+drophead_rate:				0.1
+drophead_schedule:				v
+drophead_warmup_steps:				8000
+drophead_total_steps:				18400
+swiglu_inner_hid:				1360
+max_relative_position:				16
+----------------------------------------------------------------------
+W1029 20:53:22.385412 32132 gpu_resources.cc:116] Please NOTE: device: 0, GPU Compute Capability: 12.0, Driver API Version: 13.2, Runtime API Version: 13.2
+/home/zxx/NLPexp/NLPexp2/NLPlab2/transformer.py:663: VisibleDeprecationWarning: [93m
+Warning:
+API "paddle.nn.functional.loss.softmax_with_cross_entropy" is deprecated since 2.0.0, and will be removed in future versions. Please use "paddle.nn.functional.cross_entropy" instead.
+    Reason: Please notice that behavior of "paddle.nn.functional.softmax_with_cross_entropy" and "paddle.nn.functional.cross_entropy" is different. [0m
+  cost = F.softmax_with_cross_entropy(
+[2026-10-29 20:53:23,344] [    INFO] train.py:138 - step_idx: 0, epoch: 0, batch: 0, avg loss: 10.957191, normalized loss: 9.575457, ppl: 57365.075309
+[2026-10-29 20:53:58,329] [    INFO] train.py:146 - step_idx: 100, epoch: 0, batch: 100, avg loss: 9.366245, normalized loss: 7.984511, ppl: 11687.145301, speed: 2.86 step/s
+[2026-10-29 20:54:34,003] [    INFO] train.py:146 - step_idx: 200, epoch: 0, batch: 200, avg loss: 8.689215, normalized loss: 7.307481, ppl: 5938.518159, speed: 2.80 step/s
+[2026-10-29 20:55:09,982] [    INFO] train.py:146 - step_idx: 300, epoch: 0, batch: 300, avg loss: 8.041134, normalized loss: 6.659400, ppl: 3106.134590, speed: 2.78 step/s
+[2026-10-29 20:55:45,796] [    INFO] train.py:146 - step_idx: 400, epoch: 0, batch: 400, avg loss: 7.290214, normalized loss: 5.908480, ppl: 1465.883993, speed: 2.79 step/s
+[2026-10-29 20:56:21,659] [    INFO] train.py:146 - step_idx: 500, epoch: 0, batch: 500, avg loss: 7.437829, normalized loss: 6.056095, ppl: 1699.057874, speed: 2.79 step/s
+[2026-10-29 20:56:57,604] [    INFO] train.py:146 - step_idx: 600, epoch: 0, batch: 600, avg loss: 7.613846, normalized loss: 6.232112, ppl: 2026.055308, speed: 2.78 step/s
+[2026-10-29 20:57:33,714] [    INFO] train.py:146 - step_idx: 700, epoch: 0, batch: 700, avg loss: 7.126886, normalized loss: 5.745152, ppl: 1244.993780, speed: 2.77 step/s
+[2026-10-29 20:58:09,770] [    INFO] train.py:146 - step_idx: 800, epoch: 0, batch: 800, avg loss: 7.166157, normalized loss: 5.784423, ppl: 1294.858481, speed: 2.77 step/s
+[2026-10-29 20:58:45,931] [    INFO] train.py:146 - step_idx: 900, epoch: 0, batch: 900, avg loss: 7.356055, normalized loss: 5.974321, ppl: 1565.647230, speed: 2.77 step/s
+[2026-10-29 20:59:22,147] [    INFO] train.py:146 - step_idx: 1000, epoch: 0, batch: 1000, avg loss: 6.934579, normalized loss: 5.552845, ppl: 1027.186427, speed: 2.76 step/s
+[2026-10-29 20:59:58,271] [    INFO] train.py:146 - step_idx: 1100, epoch: 0, batch: 1100, avg loss: 7.344925, normalized loss: 5.963191, ppl: 1548.318286, speed: 2.77 step/s
+[2026-10-29 21:00:34,508] [    INFO] train.py:146 - step_idx: 1200, epoch: 0, batch: 1200, avg loss: 6.978801, normalized loss: 5.597067, ppl: 1073.629983, speed: 2.76 step/s
+[2026-10-29 21:01:10,526] [    INFO] train.py:146 - step_idx: 1300, epoch: 0, batch: 1300, avg loss: 6.649727, normalized loss: 5.267993, ppl: 772.573154, speed: 2.78 step/s
+[2026-10-29 21:01:46,687] [    INFO] train.py:146 - step_idx: 1400, epoch: 0, batch: 1400, avg loss: 6.696758, normalized loss: 5.315024, ppl: 809.776041, speed: 2.77 step/s
+[2026-10-29 21:02:22,811] [    INFO] train.py:146 - step_idx: 1500, epoch: 0, batch: 1500, avg loss: 6.529593, normalized loss: 5.147859, ppl: 685.119154, speed: 2.77 step/s
+[2026-10-29 21:02:58,741] [    INFO] train.py:146 - step_idx: 1600, epoch: 0, batch: 1600, avg loss: 6.514416, normalized loss: 5.132682, ppl: 674.800090, speed: 2.78 step/s
+[2026-10-29 21:03:34,917] [    INFO] train.py:146 - step_idx: 1700, epoch: 0, batch: 1700, avg loss: 6.051496, normalized loss: 4.669762, ppl: 424.748175, speed: 2.76 step/s
+[2026-10-29 21:04:11,131] [    INFO] train.py:146 - step_idx: 1800, epoch: 0, batch: 1800, avg loss: 6.350771, normalized loss: 4.969037, ppl: 572.934335, speed: 2.76 step/s
+[2026-10-29 21:04:47,297] [    INFO] train.py:146 - step_idx: 1900, epoch: 1, batch: 64, avg loss: 6.004448, normalized loss: 4.622714, ppl: 405.227059, speed: 2.77 step/s
+[2026-10-29 21:05:23,483] [    INFO] train.py:146 - step_idx: 2000, epoch: 1, batch: 164, avg loss: 5.868983, normalized loss: 4.487249, ppl: 353.888786, speed: 2.76 step/s
+[2026-10-29 21:05:59,632] [    INFO] train.py:146 - step_idx: 2100, epoch: 1, batch: 264, avg loss: 6.146645, normalized loss: 4.764911, ppl: 467.147313, speed: 2.77 step/s
+[2026-10-29 21:06:35,918] [    INFO] train.py:146 - step_idx: 2200, epoch: 1, batch: 364, avg loss: 5.647803, normalized loss: 4.266069, ppl: 283.667640, speed: 2.76 step/s
+[2026-10-29 21:07:11,956] [    INFO] train.py:146 - step_idx: 2300, epoch: 1, batch: 464, avg loss: 5.310686, normalized loss: 3.928952, ppl: 202.489070, speed: 2.77 step/s
+[2026-10-29 21:07:48,203] [    INFO] train.py:146 - step_idx: 2400, epoch: 1, batch: 564, avg loss: 5.585771, normalized loss: 4.204037, ppl: 266.605713, speed: 2.76 step/s
+[2026-10-29 21:08:24,399] [    INFO] train.py:146 - step_idx: 2500, epoch: 1, batch: 664, avg loss: 4.998360, normalized loss: 3.616626, ppl: 148.169927, speed: 2.76 step/s
+[2026-10-29 21:09:00,687] [    INFO] train.py:146 - step_idx: 2600, epoch: 1, batch: 764, avg loss: 5.512959, normalized loss: 4.131225, ppl: 247.883627, speed: 2.76 step/s
+[2026-10-29 21:09:36,756] [    INFO] train.py:146 - step_idx: 2700, epoch: 1, batch: 864, avg loss: 5.520793, normalized loss: 4.139059, ppl: 249.833045, speed: 2.77 step/s
+[2026-10-29 21:10:12,838] [    INFO] train.py:146 - step_idx: 2800, epoch: 1, batch: 964, avg loss: 4.909318, normalized loss: 3.527584, ppl: 135.546945, speed: 2.77 step/s
+[2026-10-29 21:10:48,952] [    INFO] train.py:146 - step_idx: 2900, epoch: 1, batch: 1064, avg loss: 4.882355, normalized loss: 3.500621, ppl: 131.940975, speed: 2.77 step/s
+[2026-10-29 21:11:25,144] [    INFO] train.py:146 - step_idx: 3000, epoch: 1, batch: 1164, avg loss: 6.304785, normalized loss: 4.923051, ppl: 547.184001, speed: 2.76 step/s
+[2026-10-29 21:12:01,259] [    INFO] train.py:146 - step_idx: 3100, epoch: 1, batch: 1264, avg loss: 5.977606, normalized loss: 4.595872, ppl: 394.494638, speed: 2.77 step/s
+[2026-10-29 21:12:37,378] [    INFO] train.py:146 - step_idx: 3200, epoch: 1, batch: 1364, avg loss: 4.942310, normalized loss: 3.560576, ppl: 140.093503, speed: 2.77 step/s
+[2026-10-29 21:13:13,593] [    INFO] train.py:146 - step_idx: 3300, epoch: 1, batch: 1464, avg loss: 4.576194, normalized loss: 3.194460, ppl: 97.144007, speed: 2.76 step/s
+[2026-10-29 21:13:49,698] [    INFO] train.py:146 - step_idx: 3400, epoch: 1, batch: 1564, avg loss: 5.533892, normalized loss: 4.152158, ppl: 253.127219, speed: 2.77 step/s
+[2026-10-29 21:14:25,700] [    INFO] train.py:146 - step_idx: 3500, epoch: 1, batch: 1664, avg loss: 5.221367, normalized loss: 3.839633, ppl: 185.187179, speed: 2.78 step/s
+[2026-10-29 21:15:01,898] [    INFO] train.py:146 - step_idx: 3600, epoch: 1, batch: 1764, avg loss: 5.124508, normalized loss: 3.742774, ppl: 168.091410, speed: 2.76 step/s
+[2026-10-29 21:15:38,095] [    INFO] train.py:146 - step_idx: 3700, epoch: 2, batch: 29, avg loss: 4.294699, normalized loss: 2.912965, ppl: 73.310124, speed: 2.76 step/s
+[2026-10-29 21:16:13,777] [    INFO] train.py:146 - step_idx: 3800, epoch: 2, batch: 129, avg loss: 4.233249, normalized loss: 2.851515, ppl: 68.940838, speed: 2.80 step/s
+[2026-10-29 21:16:49,918] [    INFO] train.py:146 - step_idx: 3900, epoch: 2, batch: 229, avg loss: 5.180408, normalized loss: 3.798674, ppl: 177.755380, speed: 2.77 step/s
+[2026-10-29 21:17:26,094] [    INFO] train.py:146 - step_idx: 4000, epoch: 2, batch: 329, avg loss: 5.013124, normalized loss: 3.631390, ppl: 150.373718, speed: 2.76 step/s
+[2026-10-29 21:18:02,107] [    INFO] train.py:146 - step_idx: 4100, epoch: 2, batch: 429, avg loss: 4.194328, normalized loss: 2.812594, ppl: 66.309139, speed: 2.78 step/s
+[2026-10-29 21:18:38,158] [    INFO] train.py:146 - step_idx: 4200, epoch: 2, batch: 529, avg loss: 4.093932, normalized loss: 2.712198, ppl: 59.975227, speed: 2.77 step/s
+[2026-10-29 21:19:14,216] [    INFO] train.py:146 - step_idx: 4300, epoch: 2, batch: 629, avg loss: 4.248850, normalized loss: 2.867116, ppl: 70.024829, speed: 2.77 step/s
+[2026-10-29 21:19:50,454] [    INFO] train.py:146 - step_idx: 4400, epoch: 2, batch: 729, avg loss: 4.589524, normalized loss: 3.207790, ppl: 98.447569, speed: 2.76 step/s
+[2026-10-29 21:20:26,525] [    INFO] train.py:146 - step_idx: 4500, epoch: 2, batch: 829, avg loss: 4.107425, normalized loss: 2.725691, ppl: 60.789973, speed: 2.77 step/s
+[2026-10-29 21:21:02,612] [    INFO] train.py:146 - step_idx: 4600, epoch: 2, batch: 929, avg loss: 3.901459, normalized loss: 2.519725, ppl: 49.474601, speed: 2.77 step/s
+[2026-10-29 21:21:38,816] [    INFO] train.py:146 - step_idx: 4700, epoch: 2, batch: 1029, avg loss: 4.096786, normalized loss: 2.715052, ppl: 60.146640, speed: 2.76 step/s
+[2026-10-29 21:22:14,924] [    INFO] train.py:146 - step_idx: 4800, epoch: 2, batch: 1129, avg loss: 4.199273, normalized loss: 2.817539, ppl: 66.637844, speed: 2.77 step/s
+[2026-10-29 21:22:51,137] [    INFO] train.py:146 - step_idx: 4900, epoch: 2, batch: 1229, avg loss: 4.020913, normalized loss: 2.639178, ppl: 55.751957, speed: 2.76 step/s
+[2026-10-29 21:23:27,293] [    INFO] train.py:146 - step_idx: 5000, epoch: 2, batch: 1329, avg loss: 4.221898, normalized loss: 2.840164, ppl: 68.162745, speed: 2.77 step/s
+[2026-10-29 21:24:04,373] [    INFO] train.py:146 - step_idx: 5100, epoch: 2, batch: 1429, avg loss: 4.283786, normalized loss: 2.902052, ppl: 72.514442, speed: 2.70 step/s
+[2026-10-29 21:24:40,393] [    INFO] train.py:146 - step_idx: 5200, epoch: 2, batch: 1529, avg loss: 3.706677, normalized loss: 2.324943, ppl: 40.718294, speed: 2.78 step/s
+[2026-10-29 21:25:16,568] [    INFO] train.py:146 - step_idx: 5300, epoch: 2, batch: 1629, avg loss: 4.025403, normalized loss: 2.643669, ppl: 56.002857, speed: 2.76 step/s
+[2026-10-29 21:25:52,704] [    INFO] train.py:146 - step_idx: 5400, epoch: 2, batch: 1729, avg loss: 4.139850, normalized loss: 2.758116, ppl: 62.793425, speed: 2.77 step/s
+[2026-10-29 21:26:28,814] [    INFO] train.py:146 - step_idx: 5500, epoch: 2, batch: 1829, avg loss: 4.289345, normalized loss: 2.907611, ppl: 72.918692, speed: 2.77 step/s
+[2026-10-29 21:27:04,898] [    INFO] train.py:146 - step_idx: 5600, epoch: 3, batch: 93, avg loss: 3.754849, normalized loss: 2.373115, ppl: 42.727752, speed: 2.77 step/s
+[2026-10-29 21:27:41,055] [    INFO] train.py:146 - step_idx: 5700, epoch: 3, batch: 193, avg loss: 3.685538, normalized loss: 2.303804, ppl: 39.866566, speed: 2.77 step/s
+[2026-10-29 21:28:17,223] [    INFO] train.py:146 - step_idx: 5800, epoch: 3, batch: 293, avg loss: 3.863424, normalized loss: 2.481690, ppl: 47.628174, speed: 2.76 step/s
+[2026-10-29 21:28:53,355] [    INFO] train.py:146 - step_idx: 5900, epoch: 3, batch: 393, avg loss: 3.836117, normalized loss: 2.454383, ppl: 46.345156, speed: 2.77 step/s
+[2026-10-29 21:29:29,480] [    INFO] train.py:146 - step_idx: 6000, epoch: 3, batch: 493, avg loss: 3.980245, normalized loss: 2.598511, ppl: 53.530163, speed: 2.77 step/s
+[2026-10-29 21:30:05,531] [    INFO] train.py:146 - step_idx: 6100, epoch: 3, batch: 593, avg loss: 3.931535, normalized loss: 2.549801, ppl: 50.985204, speed: 2.77 step/s
+[2026-10-29 21:30:41,528] [    INFO] train.py:146 - step_idx: 6200, epoch: 3, batch: 693, avg loss: 3.971879, normalized loss: 2.590145, ppl: 53.084187, speed: 2.78 step/s
+[2026-10-29 21:31:17,505] [    INFO] train.py:146 - step_idx: 6300, epoch: 3, batch: 793, avg loss: 4.060906, normalized loss: 2.679172, ppl: 58.026865, speed: 2.78 step/s
+[2026-10-29 21:31:53,656] [    INFO] train.py:146 - step_idx: 6400, epoch: 3, batch: 893, avg loss: 3.571980, normalized loss: 2.190246, ppl: 35.586992, speed: 2.77 step/s
+[2026-10-29 21:32:29,674] [    INFO] train.py:146 - step_idx: 6500, epoch: 3, batch: 993, avg loss: 4.323500, normalized loss: 2.941766, ppl: 75.452240, speed: 2.78 step/s
+[2026-10-29 21:33:05,771] [    INFO] train.py:146 - step_idx: 6600, epoch: 3, batch: 1093, avg loss: 3.961942, normalized loss: 2.580208, ppl: 52.559320, speed: 2.77 step/s
+[2026-10-29 21:33:41,820] [    INFO] train.py:146 - step_idx: 6700, epoch: 3, batch: 1193, avg loss: 3.964885, normalized loss: 2.583151, ppl: 52.714227, speed: 2.77 step/s
+[2026-10-29 21:34:18,000] [    INFO] train.py:146 - step_idx: 6800, epoch: 3, batch: 1293, avg loss: 3.848941, normalized loss: 2.467207, ppl: 46.943337, speed: 2.76 step/s
+[2026-10-29 21:34:53,698] [    INFO] train.py:146 - step_idx: 6900, epoch: 3, batch: 1393, avg loss: 3.561236, normalized loss: 2.179502, ppl: 35.206678, speed: 2.80 step/s
+[2026-10-29 21:35:29,892] [    INFO] train.py:146 - step_idx: 7000, epoch: 3, batch: 1493, avg loss: 4.065868, normalized loss: 2.684134, ppl: 58.315496, speed: 2.76 step/s
+[2026-10-29 21:36:05,877] [    INFO] train.py:146 - step_idx: 7100, epoch: 3, batch: 1593, avg loss: 4.229313, normalized loss: 2.847579, ppl: 68.670036, speed: 2.78 step/s
+[2026-10-29 21:36:41,944] [    INFO] train.py:146 - step_idx: 7200, epoch: 3, batch: 1693, avg loss: 4.275039, normalized loss: 2.893305, ppl: 71.882928, speed: 2.77 step/s
+[2026-10-29 21:37:17,893] [    INFO] train.py:146 - step_idx: 7300, epoch: 3, batch: 1793, avg loss: 4.088254, normalized loss: 2.706520, ppl: 59.635705, speed: 2.78 step/s
+[2026-10-29 21:37:53,933] [    INFO] train.py:146 - step_idx: 7400, epoch: 4, batch: 57, avg loss: 4.098969, normalized loss: 2.717235, ppl: 60.278093, speed: 2.77 step/s
+[2026-10-29 21:38:29,929] [    INFO] train.py:146 - step_idx: 7500, epoch: 4, batch: 157, avg loss: 4.822044, normalized loss: 3.440310, ppl: 124.218698, speed: 2.78 step/s
+[2026-10-29 21:39:05,865] [    INFO] train.py:146 - step_idx: 7600, epoch: 4, batch: 257, avg loss: 3.531044, normalized loss: 2.149310, ppl: 34.159599, speed: 2.78 step/s
+[2026-10-29 21:39:41,885] [    INFO] train.py:146 - step_idx: 7700, epoch: 4, batch: 357, avg loss: 3.816287, normalized loss: 2.434553, ppl: 45.435208, speed: 2.78 step/s
+[2026-10-29 21:40:17,791] [    INFO] train.py:146 - step_idx: 7800, epoch: 4, batch: 457, avg loss: 3.753186, normalized loss: 2.371452, ppl: 42.656791, speed: 2.79 step/s
+[2026-10-29 21:40:53,767] [    INFO] train.py:146 - step_idx: 7900, epoch: 4, batch: 557, avg loss: 3.846121, normalized loss: 2.464387, ppl: 46.811148, speed: 2.78 step/s
+[2026-10-29 21:41:29,682] [    INFO] train.py:146 - step_idx: 8000, epoch: 4, batch: 657, avg loss: 3.619919, normalized loss: 2.238185, ppl: 37.334551, speed: 2.78 step/s
+[2026-10-29 21:42:05,593] [    INFO] train.py:146 - step_idx: 8100, epoch: 4, batch: 757, avg loss: 3.551744, normalized loss: 2.170010, ppl: 34.874082, speed: 2.78 step/s
+[2026-10-29 21:42:41,631] [    INFO] train.py:146 - step_idx: 8200, epoch: 4, batch: 857, avg loss: 3.953497, normalized loss: 2.571763, ppl: 52.117285, speed: 2.77 step/s
+[2026-10-29 21:43:17,634] [    INFO] train.py:146 - step_idx: 8300, epoch: 4, batch: 957, avg loss: 3.543075, normalized loss: 2.161341, ppl: 34.573082, speed: 2.78 step/s
+[2026-10-29 21:43:53,693] [    INFO] train.py:146 - step_idx: 8400, epoch: 4, batch: 1057, avg loss: 3.846286, normalized loss: 2.464552, ppl: 46.818866, speed: 2.77 step/s
+[2026-10-29 21:44:29,638] [    INFO] train.py:146 - step_idx: 8500, epoch: 4, batch: 1157, avg loss: 3.707882, normalized loss: 2.326148, ppl: 40.767362, speed: 2.78 step/s
+[2026-10-29 21:45:05,603] [    INFO] train.py:146 - step_idx: 8600, epoch: 4, batch: 1257, avg loss: 3.752092, normalized loss: 2.370358, ppl: 42.610120, speed: 2.78 step/s
+[2026-10-29 21:45:41,572] [    INFO] train.py:146 - step_idx: 8700, epoch: 4, batch: 1357, avg loss: 3.767248, normalized loss: 2.385514, ppl: 43.260833, speed: 2.78 step/s
+[2026-10-29 21:46:17,451] [    INFO] train.py:146 - step_idx: 8800, epoch: 4, batch: 1457, avg loss: 3.874070, normalized loss: 2.492336, ppl: 48.137914, speed: 2.79 step/s
+[2026-10-29 21:46:53,470] [    INFO] train.py:146 - step_idx: 8900, epoch: 4, batch: 1557, avg loss: 3.809605, normalized loss: 2.427871, ppl: 45.132607, speed: 2.78 step/s
+[2026-10-29 21:47:29,191] [    INFO] train.py:146 - step_idx: 9000, epoch: 4, batch: 1657, avg loss: 3.651716, normalized loss: 2.269982, ppl: 38.540750, speed: 2.80 step/s
+[2026-10-29 21:48:05,129] [    INFO] train.py:146 - step_idx: 9100, epoch: 4, batch: 1757, avg loss: 3.975103, normalized loss: 2.593369, ppl: 53.255620, speed: 2.78 step/s
+[2026-10-29 21:48:41,080] [    INFO] train.py:146 - step_idx: 9200, epoch: 5, batch: 21, avg loss: 3.240734, normalized loss: 1.858999, ppl: 25.552458, speed: 2.78 step/s
+[2026-10-29 21:49:17,061] [    INFO] train.py:146 - step_idx: 9300, epoch: 5, batch: 121, avg loss: 3.411511, normalized loss: 2.029777, ppl: 30.311008, speed: 2.78 step/s
+[2026-10-29 21:49:52,963] [    INFO] train.py:146 - step_idx: 9400, epoch: 5, batch: 221, avg loss: 3.447186, normalized loss: 2.065452, ppl: 31.411882, speed: 2.79 step/s
+[2026-10-29 21:50:28,969] [    INFO] train.py:146 - step_idx: 9500, epoch: 5, batch: 321, avg loss: 3.650197, normalized loss: 2.268463, ppl: 38.482256, speed: 2.78 step/s
+[2026-10-29 21:51:05,022] [    INFO] train.py:146 - step_idx: 9600, epoch: 5, batch: 421, avg loss: 3.420030, normalized loss: 2.038296, ppl: 30.570337, speed: 2.77 step/s
+[2026-10-29 21:51:41,111] [    INFO] train.py:146 - step_idx: 9700, epoch: 5, batch: 521, avg loss: 3.301377, normalized loss: 1.919643, ppl: 27.150004, speed: 2.77 step/s
+[2026-10-29 21:52:17,169] [    INFO] train.py:146 - step_idx: 9800, epoch: 5, batch: 621, avg loss: 3.483214, normalized loss: 2.101480, ppl: 32.564210, speed: 2.77 step/s
+[2026-10-29 21:52:53,279] [    INFO] train.py:146 - step_idx: 9900, epoch: 5, batch: 721, avg loss: 3.570825, normalized loss: 2.189091, ppl: 35.545920, speed: 2.77 step/s
+[2026-10-29 21:53:29,426] [    INFO] train.py:146 - step_idx: 10000, epoch: 5, batch: 821, avg loss: 3.516770, normalized loss: 2.135036, ppl: 33.675492, speed: 2.77 step/s
+[2026-10-29 21:54:06,362] [    INFO] train.py:146 - step_idx: 10100, epoch: 5, batch: 921, avg loss: 3.766380, normalized loss: 2.384646, ppl: 43.223334, speed: 2.71 step/s
+[2026-10-29 21:54:42,352] [    INFO] train.py:146 - step_idx: 10200, epoch: 5, batch: 1021, avg loss: 3.356251, normalized loss: 1.974517, ppl: 28.681468, speed: 2.78 step/s
+[2026-10-29 21:55:18,373] [    INFO] train.py:146 - step_idx: 10300, epoch: 5, batch: 1121, avg loss: 3.451231, normalized loss: 2.069497, ppl: 31.539204, speed: 2.78 step/s
+[2026-10-29 21:55:54,321] [    INFO] train.py:146 - step_idx: 10400, epoch: 5, batch: 1221, avg loss: 3.578738, normalized loss: 2.197004, ppl: 35.828308, speed: 2.78 step/s
+[2026-10-29 21:56:30,279] [    INFO] train.py:146 - step_idx: 10500, epoch: 5, batch: 1321, avg loss: 3.513568, normalized loss: 2.131834, ppl: 33.567829, speed: 2.78 step/s
+[2026-10-29 21:57:06,288] [    INFO] train.py:146 - step_idx: 10600, epoch: 5, batch: 1421, avg loss: 3.198485, normalized loss: 1.816751, ppl: 24.495394, speed: 2.78 step/s
+[2026-10-29 21:57:42,346] [    INFO] train.py:146 - step_idx: 10700, epoch: 5, batch: 1521, avg loss: 3.502700, normalized loss: 2.120966, ppl: 33.205000, speed: 2.77 step/s
+[2026-10-29 21:58:18,329] [    INFO] train.py:146 - step_idx: 10800, epoch: 5, batch: 1621, avg loss: 3.235145, normalized loss: 1.853411, ppl: 25.410046, speed: 2.78 step/s
+[2026-10-29 21:58:54,238] [    INFO] train.py:146 - step_idx: 10900, epoch: 5, batch: 1721, avg loss: 3.141232, normalized loss: 1.759498, ppl: 23.132350, speed: 2.78 step/s
+[2026-10-29 21:59:30,242] [    INFO] train.py:146 - step_idx: 11000, epoch: 5, batch: 1821, avg loss: 3.227007, normalized loss: 1.845273, ppl: 25.204107, speed: 2.78 step/s
+[2026-10-29 22:00:06,261] [    INFO] train.py:146 - step_idx: 11100, epoch: 6, batch: 86, avg loss: 3.008032, normalized loss: 1.626298, ppl: 20.247521, speed: 2.78 step/s
+[2026-10-29 22:00:42,249] [    INFO] train.py:146 - step_idx: 11200, epoch: 6, batch: 186, avg loss: 3.069898, normalized loss: 1.688164, ppl: 21.539715, speed: 2.78 step/s
+[2026-10-29 22:01:18,380] [    INFO] train.py:146 - step_idx: 11300, epoch: 6, batch: 286, avg loss: 3.488786, normalized loss: 2.107052, ppl: 32.746172, speed: 2.77 step/s
+[2026-10-29 22:01:54,284] [    INFO] train.py:146 - step_idx: 11400, epoch: 6, batch: 386, avg loss: 3.284550, normalized loss: 1.902816, ppl: 26.696979, speed: 2.79 step/s
+[2026-10-29 22:02:30,330] [    INFO] train.py:146 - step_idx: 11500, epoch: 6, batch: 486, avg loss: 3.335691, normalized loss: 1.953957, ppl: 28.097781, speed: 2.77 step/s
+[2026-10-29 22:03:06,254] [    INFO] train.py:146 - step_idx: 11600, epoch: 6, batch: 586, avg loss: 3.362947, normalized loss: 1.981213, ppl: 28.874171, speed: 2.78 step/s
+[2026-10-29 22:03:42,138] [    INFO] train.py:146 - step_idx: 11700, epoch: 6, batch: 686, avg loss: 3.466546, normalized loss: 2.084812, ppl: 32.025921, speed: 2.79 step/s
+[2026-10-29 22:04:18,149] [    INFO] train.py:146 - step_idx: 11800, epoch: 6, batch: 786, avg loss: 3.442623, normalized loss: 2.060889, ppl: 31.268874, speed: 2.78 step/s
+[2026-10-29 22:04:54,250] [    INFO] train.py:146 - step_idx: 11900, epoch: 6, batch: 886, avg loss: 3.342471, normalized loss: 1.960737, ppl: 28.288943, speed: 2.77 step/s
+[2026-10-29 22:05:30,263] [    INFO] train.py:146 - step_idx: 12000, epoch: 6, batch: 986, avg loss: 3.153740, normalized loss: 1.772006, ppl: 23.423494, speed: 2.78 step/s
+[2026-10-29 22:06:06,282] [    INFO] train.py:146 - step_idx: 12100, epoch: 6, batch: 1086, avg loss: 3.243404, normalized loss: 1.861670, ppl: 25.620784, speed: 2.78 step/s
+[2026-10-29 22:06:42,353] [    INFO] train.py:146 - step_idx: 12200, epoch: 6, batch: 1186, avg loss: 3.332652, normalized loss: 1.950918, ppl: 28.012537, speed: 2.77 step/s
+[2026-10-29 22:07:18,459] [    INFO] train.py:146 - step_idx: 12300, epoch: 6, batch: 1286, avg loss: 3.353584, normalized loss: 1.971850, ppl: 28.605064, speed: 2.77 step/s
+[2026-10-29 22:07:54,541] [    INFO] train.py:146 - step_idx: 12400, epoch: 6, batch: 1386, avg loss: 3.225907, normalized loss: 1.844173, ppl: 25.176410, speed: 2.77 step/s
+[2026-10-29 22:08:30,668] [    INFO] train.py:146 - step_idx: 12500, epoch: 6, batch: 1486, avg loss: 3.019219, normalized loss: 1.637485, ppl: 20.475304, speed: 2.77 step/s
+[2026-10-29 22:09:06,694] [    INFO] train.py:146 - step_idx: 12600, epoch: 6, batch: 1586, avg loss: 3.249325, normalized loss: 1.867591, ppl: 25.772949, speed: 2.78 step/s
+[2026-10-29 22:09:42,742] [    INFO] train.py:146 - step_idx: 12700, epoch: 6, batch: 1686, avg loss: 3.649614, normalized loss: 2.267880, ppl: 38.459813, speed: 2.77 step/s
+[2026-10-29 22:10:18,810] [    INFO] train.py:146 - step_idx: 12800, epoch: 6, batch: 1786, avg loss: 3.392611, normalized loss: 2.010877, ppl: 29.743522, speed: 2.77 step/s
+[2026-10-29 22:10:54,905] [    INFO] train.py:146 - step_idx: 12900, epoch: 7, batch: 51, avg loss: 3.126620, normalized loss: 1.744886, ppl: 22.796788, speed: 2.77 step/s
+[2026-10-29 22:11:30,941] [    INFO] train.py:146 - step_idx: 13000, epoch: 7, batch: 151, avg loss: 3.073827, normalized loss: 1.692093, ppl: 21.624493, speed: 2.77 step/s
+[2026-10-29 22:12:07,078] [    INFO] train.py:146 - step_idx: 13100, epoch: 7, batch: 251, avg loss: 3.045170, normalized loss: 1.663436, ppl: 21.013595, speed: 2.77 step/s
+[2026-10-29 22:12:43,201] [    INFO] train.py:146 - step_idx: 13200, epoch: 7, batch: 351, avg loss: 3.123010, normalized loss: 1.741276, ppl: 22.714649, speed: 2.77 step/s
+[2026-10-29 22:13:19,210] [    INFO] train.py:146 - step_idx: 13300, epoch: 7, batch: 451, avg loss: 3.029900, normalized loss: 1.648166, ppl: 20.695159, speed: 2.78 step/s
+[2026-10-29 22:13:55,174] [    INFO] train.py:146 - step_idx: 13400, epoch: 7, batch: 551, avg loss: 3.035141, normalized loss: 1.653407, ppl: 20.803915, speed: 2.78 step/s
+[2026-10-29 22:14:31,077] [    INFO] train.py:146 - step_idx: 13500, epoch: 7, batch: 651, avg loss: 3.065872, normalized loss: 1.684138, ppl: 21.453167, speed: 2.79 step/s
+[2026-10-29 22:15:07,162] [    INFO] train.py:146 - step_idx: 13600, epoch: 7, batch: 751, avg loss: 3.044338, normalized loss: 1.662604, ppl: 20.996122, speed: 2.77 step/s
+[2026-10-29 22:15:43,078] [    INFO] train.py:146 - step_idx: 13700, epoch: 7, batch: 851, avg loss: 3.338453, normalized loss: 1.956719, ppl: 28.175509, speed: 2.78 step/s
+[2026-10-29 22:16:19,058] [    INFO] train.py:146 - step_idx: 13800, epoch: 7, batch: 951, avg loss: 3.371438, normalized loss: 1.989704, ppl: 29.120370, speed: 2.78 step/s
+[2026-10-29 22:16:55,007] [    INFO] train.py:146 - step_idx: 13900, epoch: 7, batch: 1051, avg loss: 3.319747, normalized loss: 1.938013, ppl: 27.653345, speed: 2.78 step/s
+[2026-10-29 22:17:31,081] [    INFO] train.py:146 - step_idx: 14000, epoch: 7, batch: 1151, avg loss: 3.132510, normalized loss: 1.750776, ppl: 22.931459, speed: 2.77 step/s
+[2026-10-29 22:18:07,052] [    INFO] train.py:146 - step_idx: 14100, epoch: 7, batch: 1251, avg loss: 3.477878, normalized loss: 2.096144, ppl: 32.390922, speed: 2.78 step/s
+[2026-10-29 22:18:43,049] [    INFO] train.py:146 - step_idx: 14200, epoch: 7, batch: 1351, avg loss: 3.134446, normalized loss: 1.752712, ppl: 22.975904, speed: 2.78 step/s
+[2026-10-29 22:19:19,203] [    INFO] train.py:146 - step_idx: 14300, epoch: 7, batch: 1451, avg loss: 3.429668, normalized loss: 2.047934, ppl: 30.866403, speed: 2.77 step/s
+[2026-10-29 22:19:55,161] [    INFO] train.py:146 - step_idx: 14400, epoch: 7, batch: 1551, avg loss: 3.325580, normalized loss: 1.943845, ppl: 27.815113, speed: 2.78 step/s
+[2026-10-29 22:20:30,789] [    INFO] train.py:146 - step_idx: 14500, epoch: 7, batch: 1651, avg loss: 3.085043, normalized loss: 1.703309, ppl: 21.868408, speed: 2.81 step/s
+[2026-10-29 22:21:06,831] [    INFO] train.py:146 - step_idx: 14600, epoch: 7, batch: 1751, avg loss: 3.482305, normalized loss: 2.100571, ppl: 32.534625, speed: 2.77 step/s
+[2026-10-29 22:21:42,792] [    INFO] train.py:146 - step_idx: 14700, epoch: 8, batch: 15, avg loss: 3.123692, normalized loss: 1.741958, ppl: 22.730136, speed: 2.78 step/s
+[2026-10-29 22:22:18,842] [    INFO] train.py:146 - step_idx: 14800, epoch: 8, batch: 115, avg loss: 2.799097, normalized loss: 1.417363, ppl: 16.429801, speed: 2.77 step/s
+[2026-10-29 22:22:54,743] [    INFO] train.py:146 - step_idx: 14900, epoch: 8, batch: 215, avg loss: 3.008926, normalized loss: 1.627192, ppl: 20.265628, speed: 2.79 step/s
+[2026-10-29 22:23:30,363] [    INFO] train.py:146 - step_idx: 15000, epoch: 8, batch: 315, avg loss: 2.967206, normalized loss: 1.585471, ppl: 19.437526, speed: 2.81 step/s
+[2026-10-29 22:24:07,354] [    INFO] train.py:146 - step_idx: 15100, epoch: 8, batch: 415, avg loss: 3.305611, normalized loss: 1.923877, ppl: 27.265204, speed: 2.70 step/s
+[2026-10-29 22:24:43,457] [    INFO] train.py:146 - step_idx: 15200, epoch: 8, batch: 515, avg loss: 3.059058, normalized loss: 1.677324, ppl: 21.307486, speed: 2.77 step/s
+[2026-10-29 22:25:19,480] [    INFO] train.py:146 - step_idx: 15300, epoch: 8, batch: 615, avg loss: 3.078933, normalized loss: 1.697199, ppl: 21.735208, speed: 2.78 step/s
+[2026-10-29 22:25:55,520] [    INFO] train.py:146 - step_idx: 15400, epoch: 8, batch: 715, avg loss: 3.057099, normalized loss: 1.675365, ppl: 21.265776, speed: 2.77 step/s
+[2026-10-29 22:26:31,602] [    INFO] train.py:146 - step_idx: 15500, epoch: 8, batch: 815, avg loss: 3.069407, normalized loss: 1.687673, ppl: 21.529129, speed: 2.77 step/s
+[2026-10-29 22:27:07,543] [    INFO] train.py:146 - step_idx: 15600, epoch: 8, batch: 915, avg loss: 3.130510, normalized loss: 1.748776, ppl: 22.885651, speed: 2.78 step/s
+[2026-10-29 22:27:43,581] [    INFO] train.py:146 - step_idx: 15700, epoch: 8, batch: 1015, avg loss: 3.170376, normalized loss: 1.788642, ppl: 23.816443, speed: 2.77 step/s
+[2026-10-29 22:28:19,618] [    INFO] train.py:146 - step_idx: 15800, epoch: 8, batch: 1115, avg loss: 3.221000, normalized loss: 1.839266, ppl: 25.053157, speed: 2.77 step/s
+[2026-10-29 22:28:55,620] [    INFO] train.py:146 - step_idx: 15900, epoch: 8, batch: 1215, avg loss: 2.853168, normalized loss: 1.471434, ppl: 17.342639, speed: 2.78 step/s
+[2026-10-29 22:29:31,555] [    INFO] train.py:146 - step_idx: 16000, epoch: 8, batch: 1315, avg loss: 3.100637, normalized loss: 1.718903, ppl: 22.212095, speed: 2.78 step/s
+[2026-10-29 22:30:07,584] [    INFO] train.py:146 - step_idx: 16100, epoch: 8, batch: 1415, avg loss: 2.890669, normalized loss: 1.508935, ppl: 18.005350, speed: 2.78 step/s
+[2026-10-29 22:30:43,675] [    INFO] train.py:146 - step_idx: 16200, epoch: 8, batch: 1515, avg loss: 3.507856, normalized loss: 2.126122, ppl: 33.376629, speed: 2.77 step/s
+[2026-10-29 22:31:19,633] [    INFO] train.py:146 - step_idx: 16300, epoch: 8, batch: 1615, avg loss: 3.081226, normalized loss: 1.699492, ppl: 21.785096, speed: 2.78 step/s
+[2026-10-29 22:31:55,715] [    INFO] train.py:146 - step_idx: 16400, epoch: 8, batch: 1715, avg loss: 3.105407, normalized loss: 1.723673, ppl: 22.318310, speed: 2.77 step/s
+[2026-10-29 22:32:31,642] [    INFO] train.py:146 - step_idx: 16500, epoch: 8, batch: 1815, avg loss: 3.084578, normalized loss: 1.702843, ppl: 21.858230, speed: 2.78 step/s
+[2026-10-29 22:33:07,576] [    INFO] train.py:146 - step_idx: 16600, epoch: 9, batch: 79, avg loss: 2.785615, normalized loss: 1.403881, ppl: 16.209778, speed: 2.78 step/s
+[2026-10-29 22:33:43,730] [    INFO] train.py:146 - step_idx: 16700, epoch: 9, batch: 179, avg loss: 3.028611, normalized loss: 1.646877, ppl: 20.668499, speed: 2.77 step/s
+[2026-10-29 22:34:19,615] [    INFO] train.py:146 - step_idx: 16800, epoch: 9, batch: 279, avg loss: 2.961695, normalized loss: 1.579961, ppl: 19.330717, speed: 2.79 step/s
+[2026-10-29 22:34:55,617] [    INFO] train.py:146 - step_idx: 16900, epoch: 9, batch: 379, avg loss: 2.960225, normalized loss: 1.578491, ppl: 19.302318, speed: 2.78 step/s
+[2026-10-29 22:35:31,618] [    INFO] train.py:146 - step_idx: 17000, epoch: 9, batch: 479, avg loss: 3.064725, normalized loss: 1.682991, ppl: 21.428560, speed: 2.78 step/s
+[2026-10-29 22:36:07,659] [    INFO] train.py:146 - step_idx: 17100, epoch: 9, batch: 579, avg loss: 2.989722, normalized loss: 1.607988, ppl: 19.880148, speed: 2.77 step/s
+[2026-10-29 22:36:43,363] [    INFO] train.py:146 - step_idx: 17200, epoch: 9, batch: 679, avg loss: 2.833062, normalized loss: 1.451328, ppl: 16.997429, speed: 2.80 step/s
+[2026-10-29 22:37:19,444] [    INFO] train.py:146 - step_idx: 17300, epoch: 9, batch: 779, avg loss: 3.089692, normalized loss: 1.707958, ppl: 21.970306, speed: 2.77 step/s
+[2026-10-29 22:37:55,433] [    INFO] train.py:146 - step_idx: 17400, epoch: 9, batch: 879, avg loss: 2.975289, normalized loss: 1.593555, ppl: 19.595287, speed: 2.78 step/s
+[2026-10-29 22:38:31,393] [    INFO] train.py:146 - step_idx: 17500, epoch: 9, batch: 979, avg loss: 2.936578, normalized loss: 1.554844, ppl: 18.851227, speed: 2.78 step/s
+[2026-10-29 22:39:07,415] [    INFO] train.py:146 - step_idx: 17600, epoch: 9, batch: 1079, avg loss: 3.066742, normalized loss: 1.685008, ppl: 21.471843, speed: 2.78 step/s
+[2026-10-29 22:39:43,477] [    INFO] train.py:146 - step_idx: 17700, epoch: 9, batch: 1179, avg loss: 3.042403, normalized loss: 1.660669, ppl: 20.955530, speed: 2.77 step/s
+[2026-10-29 22:40:19,478] [    INFO] train.py:146 - step_idx: 17800, epoch: 9, batch: 1279, avg loss: 3.084973, normalized loss: 1.703239, ppl: 21.866877, speed: 2.78 step/s
+[2026-10-29 22:40:55,410] [    INFO] train.py:146 - step_idx: 17900, epoch: 9, batch: 1379, avg loss: 3.095400, normalized loss: 1.713666, ppl: 22.096065, speed: 2.78 step/s
+[2026-10-29 22:41:31,383] [    INFO] train.py:146 - step_idx: 18000, epoch: 9, batch: 1479, avg loss: 3.102165, normalized loss: 1.720431, ppl: 22.246055, speed: 2.78 step/s
+[2026-10-29 22:42:07,380] [    INFO] train.py:146 - step_idx: 18100, epoch: 9, batch: 1579, avg loss: 3.199585, normalized loss: 1.817851, ppl: 24.522347, speed: 2.78 step/s
+[2026-10-29 22:42:43,410] [    INFO] train.py:146 - step_idx: 18200, epoch: 9, batch: 1679, avg loss: 2.963180, normalized loss: 1.581446, ppl: 19.359444, speed: 2.78 step/s
+[2026-10-29 22:43:19,428] [    INFO] train.py:146 - step_idx: 18300, epoch: 9, batch: 1779, avg loss: 3.168960, normalized loss: 1.787226, ppl: 23.782741, speed: 2.78 step/s
