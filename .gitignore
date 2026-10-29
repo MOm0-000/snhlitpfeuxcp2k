@@ -9,3 +9,16 @@ __pycache__/
 
 # Large model weights
 *.pdparams
+data/data60419/*.zip
+
+# Paddle checkpoints / optimizer states
+*.pdparams
+*.pdopt
+*.pdmodel
+*.pdiparams
+*.pdiparams.info
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
