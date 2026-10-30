@@ -56,7 +56,7 @@ epoch: 30
 # the hyper parameters for Adam optimizer.
 # This static learning_rate will be multiplied to the LearningRateScheduler
 # derived learning rate the to get the final learning rate.
-learning_rate: 2.0
+learning_rate: 1.5
 beta1: 0.9
 beta2: 0.997
 eps: 1e-9
