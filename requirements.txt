@@ -1,0 +1,4 @@
+paddlepaddle-gpu==3.3.0
+numpy==2.2.6
+six==1.17.0
+PyYAML==6.0.3

@@ -8,6 +8,24 @@
 
 ---
 
+## 运行环境
+
+本项目实际使用的实验环境为：
+
+- Ubuntu Linux
+- Python 3.10.21
+- PaddlePaddle-GPU 3.3.0
+- CUDA 13.0（PaddlePaddle build）
+- NVIDIA GeForce RTX 5070 Laptop GPU，8 GB 显存
+
+Python 依赖见 `requirements.txt`，可在虚拟环境中执行：
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+---
+
 ## 目录结构
 
 ```text
@@ -18,6 +36,7 @@
 ├── transformer.py                  # Transformer 模型及 3.7 结构改进
 ├── reader.py                       # 数据读取、组批与词表处理
 ├── transformer.yaml                # 当前课程基线默认配置
+├── requirements.txt                # Python 运行依赖
 │
 ├── run_hparam_experiments.py       # 3.6 单因素超参数实验
 ├── stat.py                         # 3.6 实验结果统计
