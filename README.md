@@ -2,9 +2,9 @@
 
 > 《自然语言处理 C 实验 II》课程实验代码。
 
-本项目基于 PaddlePaddle 动态图实现 Transformer 英→中机器翻译，在 WMT18 中英平行语料上完成基线模型训练、newstest2017/newstest2018 预测、BLEU 评估、3.6 超参数实验以及 3.7 模型结构改进实验。
+本项目基于 PaddlePaddle 动态图实现 Transformer 英→中机器翻译，在 WMT18 中英平行语料上完成基线模型训练、newstest2017/newstest2018 预测、BLEU 评估、3.6 超参数实验，以及 3.7 模型结构改进与 R-Drop 一致性正则实验。
 
-当前仓库以课程实验为主，不做额外工程化拆分；目录和脚本名称尽量与实际实验过程保持一致。
+当前仓库统一使用根目录的一套 `TransformerModel`、数据读取代码和 YAML 配置。R-Drop 仅保留独立训练入口 `train_rdrop.py`，直接复用根目录 `transformer.py`、`reader.py`、`utils/` 和 `transformer.yaml`，不再维护第二套重复工程。
 
 ---
 
@@ -18,7 +18,7 @@
 - CUDA 13.0（PaddlePaddle build）
 - NVIDIA GeForce RTX 5070 Laptop GPU，8 GB 显存
 
-Python 依赖见 `requirements.txt`，可在虚拟环境中执行：
+Python 依赖见 `requirements.txt`：
 
 ```bash
 python -m pip install -r requirements.txt
@@ -30,30 +30,31 @@ python -m pip install -r requirements.txt
 
 ```text
 .
-├── main.py                         # 统一入口：解析 YAML/命令行参数并分发训练或预测
-├── train.py                        # Transformer 训练逻辑
+├── main.py                         # 基线训练/预测统一入口
+├── train.py                        # 普通 Transformer 训练逻辑
+├── train_rdrop.py                  # R-Drop 训练入口
 ├── predict.py                      # Beam Search 预测逻辑
 ├── transformer.py                  # Transformer 模型及 3.7 结构改进
 ├── reader.py                       # 数据读取、组批与词表处理
-├── transformer.yaml                # 当前课程基线默认配置
+├── transformer.yaml                # 统一配置：基线默认值 + 结构/R-Drop 开关
 ├── requirements.txt                # Python 运行依赖
 │
 ├── run_hparam_experiments.py       # 3.6 单因素超参数实验
 ├── stat.py                         # 3.6 实验结果统计
 ├── run_model_improvements.py       # 3.7 模型结构改进实验
-├── stat_model_improvements.py      # 3.7 实验结果统计
-├── test_transformer_37.py          # 3.7 模型改进 smoke test
+├── stat_model_improvements.py      # 3.7 结构实验结果统计
+├── test_transformer_37.py          # 3.7 模型结构 smoke test
 │
 ├── hparam_runs/                    # 3.6 实验记录、预测结果与统计结果
-├── improvement_runs/               # 3.7 实验记录、预测结果与统计结果
-├── output_file/                    # 3.3 基线模型的 2017/2018 预测结果
+├── improvement_runs/               # 3.7 结构实验记录、预测结果与统计结果
+├── output_file/                    # 基线 2017/2018 预测结果
 │
 ├── wmt18_zhen_data_bpe3/           # WMT18 中英训练/测试数据与词表
 ├── mosesdecoder/                   # multi-bleu.perl
 └── utils/                          # 配置解析与环境检查
 ```
 
-`saved_models/` 以及各实验目录中的 Paddle 权重文件保存在本地，不上传 GitHub。
+`saved_models/` 及其中的 Paddle 权重保存在本地，不上传 GitHub。
 
 ---
 
@@ -83,7 +84,7 @@ python -m pip install -r requirements.txt
 
 当前实现使用 Pre-LN Transformer；源语言与目标语言共用词表，并共享词嵌入/输出投影权重。
 
-`transformer.yaml` 已与当前课程实验对齐。3.6 和 3.7 的实验脚本通过命令行参数覆盖其中的部分默认值，因此 YAML 本身始终保持“基线配置”。
+`transformer.yaml` 始终保存普通基线的默认训练参数。3.6、3.7 结构实验以及 R-Drop 通过命令行覆盖各自需要改变的参数，避免不同实验互相污染默认配置。
 
 ### 1.2 数据
 
@@ -109,7 +110,7 @@ wmt18_zhen_data_bpe3/
 
 ## 2. 3.3 基线模型训练
 
-由于 `transformer.yaml` 已经保存课程基线默认配置，正常训练可直接执行：
+由于 `transformer.yaml` 已保存课程基线默认配置，正常训练可直接执行：
 
 ```bash
 python3 -u main.py --do_train True
@@ -127,7 +128,7 @@ save_step = 5000
 save_model_path = saved_models
 ```
 
-训练过程中会按以下形式保存模型：
+训练过程中按如下形式保存模型：
 
 ```text
 saved_models/
@@ -137,14 +138,14 @@ saved_models/
 └── step_final/
 ```
 
-其中模型参数和优化器状态分别为：
+模型参数和优化器状态分别为：
 
 ```text
 transformer.pdparams
 transformer.pdopt
 ```
 
-这些文件体积较大，已通过 `.gitignore` 排除，不上传 GitHub。
+这些文件体积较大，已通过 `.gitignore` 排除。
 
 ---
 
@@ -155,8 +156,6 @@ transformer.pdopt
 ```text
 saved_models/step_final/
 ```
-
-分别预测 newstest2017 和 newstest2018。
 
 ### 3.1 newstest2017
 
@@ -200,7 +199,7 @@ sed -r 's/(@@ )|(@@ ?$)//g' \
   > output_file/predict_2018.tok.txt
 ```
 
-当前仓库已保存：
+当前仓库保存：
 
 ```text
 output_file/
@@ -233,8 +232,6 @@ perl mosesdecoder/scripts/generic/multi-bleu.perl \
 ```
 
 基线预测文件已经保存在仓库中；BLEU 数值以本地使用以上命令重新计算的结果为准。
-
-> 注意：`max_length=256` 时，超过最大长度的样本会在读取阶段被过滤，因此预测输出行数可能少于原始测试集行数。
 
 ---
 
@@ -301,7 +298,16 @@ BLEU-2018 = 11.23
 
 ## 6. 3.7 Transformer 模型改进
 
-3.7 在 3.6 的最佳训练设置 `learning_rate=1.5` 基础上固定普通训练超参数，只改变模型结构。
+本项目的改进实验分为两类：
+
+- **模型结构改进**：Scheduled DropHead、SwiGLU、Relative Position Bias；
+- **训练目标改进**：R-Drop 一致性正则。
+
+所有实验最终复用同一份根目录 `transformer.py`。
+
+### 6.1 模型结构改进
+
+3.7 结构实验在 3.6 最佳训练设置 `learning_rate=1.5` 基础上固定普通训练超参数，只改变模型结构。
 
 运行：
 
@@ -335,9 +341,9 @@ attention_variant: "normal"
 ffn_variant: "relu"
 ```
 
-因此默认运行仍然是普通 Transformer，3.7 脚本通过命令行覆盖参数启用具体改进。
+因此默认运行仍然是普通 Transformer，结构实验脚本通过命令行覆盖参数启用具体改进。
 
-### 6.1 实验结果
+### 6.2 结构实验结果
 
 | 实验 | 结构 | BLEU-2017 | BLEU-2018 | 相对 control |
 | --- | --- | ---: | ---: | --- |
@@ -348,7 +354,7 @@ ffn_variant: "relu"
 | `swiglu_1536` | SwiGLU, hidden=1536 | 10.45 | 10.67 | -0.41 / -0.56 |
 | `relative_bias_16` | Relative Position Bias, max distance=16 | **11.11** | **11.53** | **+0.25 / +0.30** |
 
-最终 3.7 最佳结构为：
+最终结构实验最佳模型为：
 
 ```text
 relative_bias_16
@@ -365,15 +371,103 @@ BLEU-2018: +0.30
 
 Relative Position Bias 仅作用于 Encoder / Decoder 的 self-attention；Encoder-Decoder cross-attention 保持普通 attention。
 
+### 6.3 R-Drop 一致性正则
+
+R-Drop 不再维护独立的 Transformer 工程。根目录 `train_rdrop.py` 直接：
+
+```python
+from transformer import TransformerModel
+```
+
+并复用根目录：
+
+```text
+transformer.py
+reader.py
+transformer.yaml
+utils/
+```
+
+R-Drop 对同一个 batch 构造两个具有独立 dropout 随机性的前向分支，并优化：
+
+```text
+NLL + rdrop_alpha * symmetric_KL
+```
+
+统一 YAML 中增加两个 R-Drop 专用参数：
+
+```yaml
+rdrop_alpha: 1.0
+accum_steps: 2
+```
+
+为了不改变普通基线，`transformer.yaml` 中仍保留：
+
+```text
+batch_size = 4096
+epoch = 10
+learning_rate = 2.0
+```
+
+原 R-Drop 实验使用的训练设置为：
+
+```text
+batch_size = 2048
+accum_steps = 2
+epoch = 30
+learning_rate = 1.5
+rdrop_alpha = 1.0
+```
+
+如需按照该配置运行，应显式覆盖普通训练参数：
+
+```bash
+python3 -u train_rdrop.py \
+  --batch_size 2048 \
+  --epoch 30 \
+  --learning_rate 1.5 \
+  --rdrop_alpha 1.0 \
+  --accum_steps 2 \
+  --save_step 100000 \
+  --save_model_path saved_models/rdrop \
+  --attention_variant normal \
+  --ffn_variant relu
+```
+
+建议将 R-Drop 权重保存到独立目录：
+
+```text
+saved_models/rdrop/
+```
+
+以免覆盖普通基线的 `saved_models/step_final/`。
+
+`train_rdrop.py` 为了取得 KL 所需 logits，会直接调用 `TransformerModel.encode()` / `decode()` / `output_logits()`，而不是普通 `TransformerModel.forward()`。因此根目录 `transformer.py` 提供统一的：
+
+```python
+model.update_training_schedules()
+```
+
+R-Drop 在每个训练 batch 前显式调用一次。这样即使以后把 R-Drop 与 Scheduled DropHead 组合，DropHead 的按 batch 调度也不会被绕过。
+
+当前独立 R-Drop 实验建议保持：
+
+```text
+attention_variant = normal
+ffn_variant = relu
+```
+
+以便只考察 R-Drop 本身，不与结构改进混合。
+
 ---
 
 ## 7. 配置说明
 
-`transformer.yaml` 的职责是保存当前课程的**基线默认配置**。
+`transformer.yaml` 保存统一配置，其中普通训练参数保持课程基线默认值。
 
 ### 7.1 3.6
 
-3.6 需要调节的普通超参数，例如：
+3.6 调节的普通超参数包括：
 
 ```text
 learning_rate
@@ -384,11 +478,11 @@ d_inner_hid
 beam_size
 ```
 
-在 YAML 中保持基线值，`run_hparam_experiments.py` 在每个实验中只覆盖一个参数。
+`run_hparam_experiments.py` 在每个实验中只覆盖当前考察项。
 
-### 7.2 3.7
+### 7.2 3.7 结构改进
 
-模型改进相关配置：
+模型结构相关配置：
 
 ```text
 attention_variant
@@ -401,7 +495,7 @@ swiglu_inner_hid
 max_relative_position
 ```
 
-其中默认：
+默认：
 
 ```text
 attention_variant = normal
@@ -410,12 +504,27 @@ ffn_variant = relu
 
 因此不会影响 3.3 基线。
 
+### 7.3 R-Drop
+
+R-Drop 专用配置：
+
+```text
+rdrop_alpha
+accum_steps
+```
+
+`batch_size`、`epoch`、`learning_rate`、`save_step` 和 `save_model_path` 仍属于通用训练参数。如果 R-Drop 实验需要不同的值，应在运行 `train_rdrop.py` 时显式覆盖，而不是改变 YAML 的基线默认值。
+
 ---
 
 ## 8. 主要文件关系
 
 ```text
 transformer.yaml
+      │
+      ├───────────────> train_rdrop.py ──> transformer.py
+      │                        │
+      │                        └── R-Drop: NLL + symmetric KL
       │
       ▼
    main.py
@@ -427,11 +536,22 @@ run_hparam_experiments.py
       └── 多次调用 main.py，并覆盖单个超参数
               └── hparam_runs/
 
-3.7:
+3.7 结构实验:
 run_model_improvements.py
       └── 多次调用 main.py，并切换模型结构
               └── improvement_runs/
 ```
+
+根目录只保留一份：
+
+```text
+transformer.py
+reader.py
+transformer.yaml
+utils/
+```
+
+R-Drop 不再需要复制这些文件。
 
 ---
 
@@ -456,13 +576,23 @@ GitHub 主要保存：
 - `BACKUP/`
 - `TRASH/`
 
-因此重新 clone 仓库后不会包含训练权重。
+`.gitignore` 已排除：
+
+```text
+__pycache__/
+*.py[cod]
+saved_models/
+*.pdparams
+*.pdopt
+```
+
+旧的 `NLPlab2Rdrop/` 只是队友提交时形成的独立副本。其 R-Drop 训练逻辑和配置已经合并到根目录，因此最终仓库不再保留该子目录。
 
 ---
 
 ## 10. 来源
 
-本项目由早期 PaddlePaddle Transformer 示例迁移到当前 PaddlePaddle 动态图版本，并在课程实验基础上增加 3.6 超参数实验和 3.7 模型结构改进。
+本项目由早期 PaddlePaddle Transformer 示例迁移到当前 PaddlePaddle 动态图版本，并在课程实验基础上增加 3.6 超参数实验、3.7 模型结构改进以及 R-Drop 一致性正则训练。
 
 基础 Transformer 实现参考：
 
