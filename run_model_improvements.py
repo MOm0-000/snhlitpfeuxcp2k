@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Section 3.7 model-structure experiments for NLPlab2.
 
-Run from the repository root after replacing transformer.py and adding the
-new scalar keys to transformer.yaml:
+Run from the repository root:
 
     python run_model_improvements.py
 

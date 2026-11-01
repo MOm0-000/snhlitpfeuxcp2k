@@ -241,9 +241,26 @@ def do_train(args):
         rdrop_alpha,
         accum_steps)
 
+    def _rescale_gradients(scale):
+        """Multiply all accumulated parameter gradients by ``scale`` in-place."""
+        if scale == 1.0:
+            return
+        for param in model.parameters():
+            grad = param.grad
+            if grad is not None:
+                grad.set_value(grad * scale)
+
     def flush_gradients(accum_counter):
-        """Apply any residual accumulated gradient at an epoch boundary."""
+        """Apply a partial accumulation group with the correct mean scaling."""
         if accum_counter > 0:
+            # Each micro-batch backpropagates loss / accum_steps.  A full
+            # group therefore already represents the mean gradient.  If an
+            # epoch (or max_iter) ends early with only k < accum_steps
+            # micro-batches, rescale by accum_steps / k so the residual update
+            # is also the mean over the k available micro-batches.
+            if accum_counter < accum_steps:
+                _rescale_gradients(
+                    float(accum_steps) / float(accum_counter))
             optimizer.step()
             optimizer.clear_grad()
             scheduler.step()
