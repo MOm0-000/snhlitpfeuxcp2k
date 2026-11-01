@@ -282,7 +282,6 @@ class PositionwiseFeedForward(nn.Layer):
         hidden = self.relu_dropout(hidden)
         return self.out_proj(hidden)
 
-
 class EncoderLayer(nn.Layer):
     def __init__(self,
                  n_head,
@@ -640,13 +639,28 @@ class TransformerModel(nn.Layer):
         """Expose the scheduled value for logging in experiments."""
         return self._scheduled_drophead_rate()
 
-    def forward(self, src_word, src_pos, src_slf_attn_bias, trg_word, trg_pos,
-                trg_slf_attn_bias, trg_src_attn_bias, lbl_word, lbl_weight):
-        # One global schedule value is shared by all heads/layers in a batch.
+    def update_training_schedules(self):
+        """
+        Advance per-batch training schedules used by optional model variants.
+
+        Call this exactly once before the forward computation of each training
+        batch. TransformerModel.forward() calls it automatically. Alternative
+        training loops such as R-Drop, which invoke encode()/decode() directly
+        to obtain logits, should call it explicitly once per batch.
+
+        Returns the current DropHead rate when Scheduled DropHead is active;
+        otherwise returns None.
+        """
         if self.attention_variant == "drophead" and self.training:
             rate = self._scheduled_drophead_rate()
             self._set_all_drophead_rates(rate)
             self._drophead_step += 1
+            return rate
+        return None
+
+    def forward(self, src_word, src_pos, src_slf_attn_bias, trg_word, trg_pos,
+                trg_slf_attn_bias, trg_src_attn_bias, lbl_word, lbl_weight):
+        self.update_training_schedules()
 
         enc_output = self.encode(src_word, src_pos, src_slf_attn_bias)
         dec_output = self.decode(trg_word, trg_pos, enc_output,

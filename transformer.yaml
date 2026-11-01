@@ -86,6 +86,25 @@ label_smooth_eps: 0.1
 
 
 # -----------------------------------------------------------------------------
+# R-Drop training options
+#
+# These keys are read by train_rdrop.py only. They do not change the ordinary
+# Transformer baseline when training through train.py/main.py.
+#
+# The teammate R-Drop run used batch_size=2048, accum_steps=2, epoch=30 and
+# learning_rate=1.5. The baseline defaults above intentionally stay unchanged;
+# override those ordinary training arguments when running R-Drop so existing
+# 3.3/3.6/3.7 experiments are not affected.
+# -----------------------------------------------------------------------------
+
+# Weight of the bidirectional KL consistency loss.
+rdrop_alpha: 1.0
+
+# Number of micro-batches accumulated before one optimizer update.
+accum_steps: 2
+
+
+# -----------------------------------------------------------------------------
 # Generation
 # -----------------------------------------------------------------------------
 
