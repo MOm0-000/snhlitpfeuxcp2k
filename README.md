@@ -45,6 +45,7 @@ python -m pip install -r requirements.txt
 ├── stat_model_improvements.py      # 3.7 结构实验结果统计
 ├── test_transformer_37.py          # 3.7 模型结构 smoke test
 │
+├── baseline_runs/                  # 基线训练日志
 ├── hparam_runs/                    # 3.6 实验记录、预测结果与统计结果
 ├── improvement_runs/               # 3.7 结构实验记录、预测结果与统计结果
 ├── output_file/                    # 基线 2017/2018 预测结果
@@ -309,6 +310,8 @@ BLEU-2018 = 11.23
 
 3.7 结构实验在 3.6 最佳训练设置 `learning_rate=1.5` 基础上固定普通训练超参数，只改变模型结构。
 
+完整复跑 3.7 前，需要本地保留 `hparam_runs/lr_150/models/step_final/transformer.pdparams` 作为 control checkpoint。模型权重通过 `.gitignore` 排除，不上传 GitHub；仓库中保留已有预测结果、日志和统计结果用于结果核对。
+
 运行：
 
 ```bash
@@ -391,7 +394,7 @@ utils/
 R-Drop 对同一个 batch 构造两个具有独立 dropout 随机性的前向分支，并优化：
 
 ```text
-NLL + rdrop_alpha * symmetric_KL
+label-smoothed CE + rdrop_alpha * symmetric_KL
 ```
 
 统一 YAML 中增加两个 R-Drop 专用参数：
@@ -524,7 +527,7 @@ transformer.yaml
       │
       ├───────────────> train_rdrop.py ──> transformer.py
       │                        │
-      │                        └── R-Drop: NLL + symmetric KL
+      │                        └── R-Drop: label-smoothed CE + symmetric KL
       │
       ▼
    main.py
